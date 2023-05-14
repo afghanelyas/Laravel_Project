@@ -1,4 +1,17 @@
 body {
-    background: pink;
-    text-emphasis-color: red;
+    background: white;
+    color: #222222;
+    font-family:  sans-serif;
+    max-width: 600px;
+    margin: auto;
+
+}
+p{
+    line-height: 1.6;
+}
+
+article + article{
+    margin-top: 3rm;
+    padding-top: 3rm;
+    border-top: 1px solid black
 }
