@@ -27,4 +27,5 @@ Route::get('posts/{post}', function ($slug) {
     return view('post' , [
         'post' => $post
     ]);
-});
+    // add a route wildcard to match the post
+})->where('post', '[A-z_\-]+');
