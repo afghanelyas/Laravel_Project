@@ -17,15 +17,13 @@ Route::get('/', function () {
     return view('posts');
 });
 Route::get('posts/{post}', function ($slug) {
-    $path = __DIR__ . "/../resources/posts/{$slug}.html";
-
-    if (! file_exists($path)) {
+    if (! file_exists($path = __DIR__ . "/../resources/posts/{$slug}.html")) {
         return redirect('/');
     }
-    $post = file_get_contents($path);
 
-    return view('post' , [
-        'post' => $post
-    ]);
+    // cache the file
+    $post = cache()->remember("posts.{$slug}", 1200, fn() => file_get_contents($path));
+    
+    return view('post' , ['post' => $post]);
     // add a route wildcard to match the post
 })->where('post', '[A-z_\-]+');
